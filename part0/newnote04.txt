@@ -1,0 +1,18 @@
+0.4 New Note
+
+note over Browser: The browser sends the user input to the server address new_note
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over Server:  The server creates a new note object, and adds it to an array called notes.
+note over Server:  The server asks the browser to do a new HTTP GET request to notes 
+Server-->Browser: HTTP status code 302
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->Browser: HTML code
+note over Browser: The browser reloads the Notes page. The reload causes more HTTP requests
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->Browser: main.js
+note over Browser: The browser executes the JS code, that requests the data
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: JSON data
+
