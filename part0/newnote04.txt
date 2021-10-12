@@ -1,4 +1,4 @@
-0.4 New Note
+title 0.4 New Note
 
 note over Browser: The browser sends the user input to the server address new_note
 Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
@@ -12,7 +12,6 @@ Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
 Server-->Browser: main.css
 Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
 Server-->Browser: main.js
-note over Browser: The browser executes the JS code, that requests the data
+note over Browser: The browser executes the JavaScript code, requesting the JSON data
 Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
 Server-->Browser: JSON data
-
