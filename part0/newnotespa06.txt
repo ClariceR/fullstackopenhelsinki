@@ -1,0 +1,8 @@
+title 0.6 New Note SPA
+
+note over Browser: The browser sends the user input to the server address new_note_spa
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note left of Server:  The POST request to the address new_note_spa contains the new note as JSON-data
+note over Server:  The Content-Type header of the request tells the server that the data is represented in the JSON format
+Server-->Browser: HTTP status code 201 created
+note over Browser: The browser stays on the same page, and it sends no further HTTP requests
