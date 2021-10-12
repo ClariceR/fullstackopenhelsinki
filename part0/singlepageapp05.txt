@@ -1,0 +1,15 @@
+title 0.5 Single page app
+
+note over Browser: The browser fetches HTML code from server
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server-->Browser: HTML code
+note over Browser:  The links in the HTML code causes the browser to also fetch the CSS style sheet
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: main.css
+note over Browser: And also the JavaScript code file
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->Browser: main.js
+note over Browser: The browser executes the JavaScript code, requesting the JSON data
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: JSON data
+note over Browser: The browser renders the notes to the page. 
