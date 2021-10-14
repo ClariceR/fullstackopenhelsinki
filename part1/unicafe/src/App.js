@@ -9,6 +9,9 @@ const App = () => {
   const handleGood = () => setGood(good + 1)
   const handleNeutral = () => setNeutral(neutral + 1)
   const handleBad = () => setBad(bad + 1)
+  const total = () => good + neutral + bad
+  const averageGood = () => (good - bad) / total()
+  const positivePercentage = () => (good * 100) / total()
   
 
   return (
@@ -18,9 +21,12 @@ const App = () => {
       <button onClick={() => handleNeutral()}>Neutral</button>
       <button onClick={() => handleBad()}>Bad</button>
       <h2>Statistics</h2>
-      <p>Good {good}</p>
-      <p>Neutral {neutral}</p>
-      <p>Bad {bad}</p>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+      <p>All: {total()}</p>
+      <p>Average: {averageGood()}</p>
+      <p>Positive: {positivePercentage()}%</p>
     </div>
   );
 };
