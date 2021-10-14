@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./App.css";
 
 const App = () => {
   const anecdotes = [
@@ -12,28 +13,36 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
-  const [points, setPoints] = useState(Array(anecdotes.length).fill(0))
-  
+  const [points, setPoints] = useState(Array(anecdotes.length).fill(0));
 
   const handleVote = () => {
     const votes = [...points];
     votes[selected] += 1;
-    setPoints(votes)
-    
+    setPoints(votes);
   };
+
+  const mostVoted = () => {
+    const largestNum = (num) => num === Math.max(...points);
+    const index = points.findIndex(largestNum);
+    return anecdotes[index];
+  }
 
   const selectAnecdote = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length));
-    console.log(selected);
   };
 
   return (
-    <>
-      <h1>{anecdotes[selected]}</h1>
-      <h3>has {points[selected]} votes</h3>
-      <button onClick={handleVote}>vote</button>
-      <button onClick={selectAnecdote}>next anecdote</button>
-    </>
+    <div className="App">
+      <h3>Anecdote of the Day</h3>
+      <h2>{anecdotes[selected]}</h2>
+      <p>has {points[selected]} votes</p>
+      <div className="flex upper">
+        <button onClick={handleVote}>vote</button>
+        <button onClick={selectAnecdote}>next</button>
+      </div>
+      <h3>Most Voted</h3>
+      <p>{mostVoted()}</p>
+    </div>
   );
 };
 
