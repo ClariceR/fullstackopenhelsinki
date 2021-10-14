@@ -53,7 +53,7 @@ const Statistics = ({ good, neutral, bad }) => {
           </tr>
           <tr>
             <td>
-              <StatisticsLine text="Average Good" />
+              <StatisticsLine text="Average" />
             </td>
             <td>
               <StatisticsLine value={averageGood()} />
@@ -61,7 +61,7 @@ const Statistics = ({ good, neutral, bad }) => {
           </tr>
           <tr>
             <td>
-              <StatisticsLine text="Percentage Good" />
+              <StatisticsLine text="Percentage" />
             </td>
             <td>
               <StatisticsLine value={positivePercentage()} />
