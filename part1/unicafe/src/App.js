@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-const StatisticsLine = () => {
-
-}
+const StatisticsLine = ({ text, value }) => (
+  <p>
+    {text} {value}
+  </p>
+);
 
 const Statistics = ({ good, neutral, bad }) => {
   const total = () => good + neutral + bad;
@@ -15,16 +17,64 @@ const Statistics = ({ good, neutral, bad }) => {
     return (
       <>
         <h2>Statistics</h2>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-        <p>All: {total()}</p>
-        <p>Average: {averageGood()}</p>
-        <p>Positive: {positivePercentage()}%</p>
+        <table>
+        <tbody>
+          <tr>
+            <td>
+              <StatisticsLine text="Good" />
+            </td>
+            <td>
+              <StatisticsLine value={good} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticsLine text="Neutral" />
+            </td>
+            <td>
+              <StatisticsLine value={neutral} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticsLine text="Bad" />
+            </td>
+            <td>
+              <StatisticsLine value={bad} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticsLine text="All" />
+            </td>
+            <td>
+              <StatisticsLine value={total()} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticsLine text="Average Good" />
+            </td>
+            <td>
+              <StatisticsLine value={averageGood()} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <StatisticsLine text="Percentage Good" />
+            </td>
+            <td>
+              <StatisticsLine value={positivePercentage()} />
+            </td>
+            <td>%</td>
+          </tr>
+
+        </tbody>
+        </table>
       </>
     );
   }
-  return <p>No Feedback Given</p>
+  return <p>No Feedback Given</p>;
 };
 
 const App = () => {
