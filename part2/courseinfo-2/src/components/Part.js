@@ -1,10 +1,9 @@
 import React from 'react'
 
-function Part({name, exercise}) {
-    console.log('name, exercises', name, exercise)
+function Part({name, exercises}) {
     return (
       <p>
-        {name} {exercise}
+        {name} {exercises}
       </p>
     );
 }

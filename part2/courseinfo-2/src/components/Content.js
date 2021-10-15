@@ -1,15 +1,16 @@
 import React from "react";
 import Part from "./Part";
+import Total from "./Total";
 
-function Content({ eachCourse }) {
-  console.log("eachCourse:", eachCourse);
+function Content({ parts }) {
   return (
     <div>
       <ul>
-        {eachCourse.map((part) => (
-          <Part key={part.id} name={part.name} exercise={part.exercises} />
+        {parts.map((part) => (
+          <Part key={part.id} name={part.name} exercises={part.exercises} />
         ))}
       </ul>
+      <Total parts={parts}/>
     </div>
   );
 }

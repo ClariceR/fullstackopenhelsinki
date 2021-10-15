@@ -15,7 +15,7 @@ function Course({ course }) {
   return (
     <>
       <Header course={course} />
-      <Content eachCourse={course.parts} />
+      <Content parts={course.parts} />
     </>
   );
 }
