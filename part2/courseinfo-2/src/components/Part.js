@@ -2,9 +2,9 @@ import React from 'react'
 
 function Part({name, exercises}) {
     return (
-      <p>
+      <li>
         {name} {exercises}
-      </p>
+      </li>
     );
 }
 

@@ -7,9 +7,9 @@ function Total({ parts }) {
   const total = numExercises.reduce((s, c) => s + c, 0);
 
   return (
-    <div>
+    <>
       <h4>Total of {total} exercises</h4>
-    </div>
+    </>
   );
 }
 

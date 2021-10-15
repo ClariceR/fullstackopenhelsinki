@@ -1,11 +1,7 @@
 import React from "react";
 
 function Header({ course }) {
-  return (
-    <div>
-      <h1>{course.name}</h1>
-    </div>
-  );
+  return <h2>{course.name}</h2>;
 }
 
 export default Header;
