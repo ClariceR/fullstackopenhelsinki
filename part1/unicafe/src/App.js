@@ -2,11 +2,14 @@ import React, { useState } from "react";
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-const StatisticsLine = ({ text, value }) => (
-  <p>
-    {text} {value}
-  </p>
-);
+const StatisticsLine = ({ text, value }) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  );
+};
 
 const Statistics = ({ good, neutral, bad }) => {
   const total = () => good + neutral + bad;
@@ -18,58 +21,14 @@ const Statistics = ({ good, neutral, bad }) => {
       <>
         <h2>Statistics</h2>
         <table>
-        <tbody>
-          <tr>
-            <td>
-              <StatisticsLine text="Good" />
-            </td>
-            <td>
-              <StatisticsLine value={good} />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <StatisticsLine text="Neutral" />
-            </td>
-            <td>
-              <StatisticsLine value={neutral} />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <StatisticsLine text="Bad" />
-            </td>
-            <td>
-              <StatisticsLine value={bad} />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <StatisticsLine text="All" />
-            </td>
-            <td>
-              <StatisticsLine value={total()} />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <StatisticsLine text="Average" />
-            </td>
-            <td>
-              <StatisticsLine value={averageGood()} />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <StatisticsLine text="Percentage" />
-            </td>
-            <td>
-              <StatisticsLine value={positivePercentage()} />
-            </td>
-            <td>%</td>
-          </tr>
-
-        </tbody>
+          <tbody>
+            <StatisticsLine text="Good" value={good} />
+            <StatisticsLine text="Neutral" value={neutral} />
+            <StatisticsLine text="Bad" value={bad} />
+            <StatisticsLine text="All" value={total()} />
+            <StatisticsLine text="Average" value={averageGood()} />
+            <StatisticsLine text="Percentage" value={positivePercentage()}/>
+          </tbody>
         </table>
       </>
     );
