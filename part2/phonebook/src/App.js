@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
+import Search from "./components/Search";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -11,15 +12,10 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [toSearch, setToSearch] = useState("");
-  // const [toDisplay, setToDisplay] = useState(persons);
 
   const handleName = (e) => setNewName(e.target.value);
   const handleNumber = (e) => setNewNumber(e.target.value);
   const handleSearch = (e) => setToSearch(e.target.value);
-
-  // const found = persons.filter((person) => person.name.includes(toSearch));
-  // console.log(found);
-  // setToDisplay(found);
 
   const addName = (e) => {
     e.preventDefault();
@@ -43,9 +39,7 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <div>
-        Search: <input value={toSearch} onChange={handleSearch} />
-      </div>
+      <Search toSearch={toSearch} handleSearch={handleSearch}/>
       <h2>Add New Contact</h2>
       <form onSubmit={addName}>
         <div>
