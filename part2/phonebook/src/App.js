@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 import Search from "./components/Search";
 import AddForm from "./components/AddForm";
+import Contacts from "./components/Contacts";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -50,25 +51,7 @@ const App = () => {
         handleNumber={handleNumber}
       />
       <h2>Contacts</h2>
-      <ul>
-        {persons
-          .filter((person) => {
-            if (toSearch === "") {
-              return person;
-            } else if (
-              person.name
-                .toLocaleLowerCase()
-                .includes(toSearch.toLocaleLowerCase())
-            ) {
-              return person;
-            }
-          })
-          .map((person) => (
-            <li key={person.id}>
-              {person.name}: {person.number}
-            </li>
-          ))}
-      </ul>
+      <Contacts persons={persons} toSearch={toSearch}/>
     </div>
   );
 };
