@@ -2,23 +2,16 @@ import React from "react";
 import Contact from "./Contact";
 
 function Contacts({ persons, toSearch }) {
+  const findPerson = (person) => {
+    if (person.name.toLowerCase().includes(toSearch.toLowerCase())) {
+      return person;
+    }
+  };
   return (
     <ul>
-      {persons
-        .filter((person) => {
-          if (toSearch === "") {
-            return person;
-          } else if (
-            person.name
-              .toLocaleLowerCase()
-              .includes(toSearch.toLocaleLowerCase())
-          ) {
-            return person;
-          }
-        })
-        .map((person) => (
-          <Contact key={person.id} person={person} />
-        ))}
+      {persons.filter(findPerson).map((person) => (
+        <Contact key={person.id} person={person} />
+      ))}
     </ul>
   );
 }
