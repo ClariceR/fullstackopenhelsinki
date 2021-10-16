@@ -51,7 +51,7 @@ const App = () => {
         handleNumber={handleNumber}
       />
       <h2>Contacts</h2>
-      <Contacts persons={persons} toSearch={toSearch}/>
+      <Contacts persons={persons} toSearch={toSearch} />
     </div>
   );
 };
