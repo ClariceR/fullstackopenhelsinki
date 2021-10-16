@@ -11,16 +11,15 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [toSearch, setToSearch] = useState("");
-  const [toDisplay, setToDisplay] = useState(persons);
+  // const [toDisplay, setToDisplay] = useState(persons);
 
   const handleName = (e) => setNewName(e.target.value);
   const handleNumber = (e) => setNewNumber(e.target.value);
-  const handleSearch = (e) => {
-    setToSearch(e.target.value);
-    const found = persons.filter((person) => person.name.includes(toSearch));
-    console.log(found);
-    setToDisplay(found);
-  };
+  const handleSearch = (e) => setToSearch(e.target.value);
+
+  // const found = persons.filter((person) => person.name.includes(toSearch));
+  // console.log(found);
+  // setToDisplay(found);
 
   const addName = (e) => {
     e.preventDefault();
@@ -61,11 +60,23 @@ const App = () => {
       </form>
       <h2>Contacts</h2>
       <ul>
-        {toDisplay.map((person) => (
-          <li key={person.id}>
-            {person.name}: {person.number}
-          </li>
-        ))}
+        {persons
+          .filter((person) => {
+            if (toSearch === "") {
+              return person;
+            } else if (
+              person.name
+                .toLocaleLowerCase()
+                .includes(toSearch.toLocaleLowerCase())
+            ) {
+              return person;
+            }
+          })
+          .map((person) => (
+            <li key={person.id}>
+              {person.name}: {person.number}
+            </li>
+          ))}
       </ul>
     </div>
   );
