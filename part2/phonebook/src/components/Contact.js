@@ -2,7 +2,7 @@ import React from "react";
 
 function Contact({ person }) {
   return (
-    <li key={person.id}>
+    <li>
       {person.name}: {person.number}
     </li>
   );

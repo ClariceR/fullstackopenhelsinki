@@ -17,7 +17,7 @@ function Contacts({ persons, toSearch }) {
           }
         })
         .map((person) => (
-          <Contact person={person} />
+          <Contact key={person.id} person={person} />
         ))}
     </ul>
   );
