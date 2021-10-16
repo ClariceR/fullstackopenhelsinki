@@ -9,11 +9,17 @@ const App = () => {
 
   const addName = (e) => {
     e.preventDefault();
-    const personObject = {
-      name: newName,
-    };
 
-    setPersons(persons.concat(personObject));
+    if (newName.length > 0) {
+      const personObject = {
+        name: newName,
+      };
+      persons.filter((person) => person.name === newName).length > 0
+        ? alert(`${newName} is already in the Phonebook`)
+        : setPersons(persons.concat(personObject));
+    } else {
+      alert(`Please enter a new name`);
+    }
     setNewName("");
   };
 
@@ -30,7 +36,9 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       <ul>
-      {persons.map((person) => <li key={person.name}>{person.name}</li>)}
+        {persons.map((person) => (
+          <li key={person.name}>{person.name}</li>
+        ))}
       </ul>
       <div>debug: {newName}</div>
     </div>
