@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import Search from "./components/Search";
+import AddForm from "./components/AddForm";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -39,19 +40,15 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <Search toSearch={toSearch} handleSearch={handleSearch}/>
+      <Search toSearch={toSearch} handleSearch={handleSearch} />
       <h2>Add New Contact</h2>
-      <form onSubmit={addName}>
-        <div>
-          name: <input value={newName} onChange={handleName} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumber} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <AddForm
+        addName={addName}
+        newName={newName}
+        newNumber={newNumber}
+        handleName={handleName}
+        handleNumber={handleNumber}
+      />
       <h2>Contacts</h2>
       <ul>
         {persons
