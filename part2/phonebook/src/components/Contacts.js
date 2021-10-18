@@ -7,9 +7,10 @@ function Contacts({ persons, toSearch }) {
       return person;
     }
   };
+  const filterList = persons.filter(findPerson);
   return (
     <ul>
-      {persons.filter(findPerson).map((person) => (
+      {filterList.map((person) => (
         <Contact key={person.id} person={person} />
       ))}
     </ul>
