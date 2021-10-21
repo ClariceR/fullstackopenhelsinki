@@ -2,16 +2,40 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+function CountryDetails({ country }) {
+  const languagesObj = { ...country.languages };
+  const languages = [];
+  for (const key in languagesObj) {
+    languages.push(languagesObj[key]);
+  }
+  return (
+    <>
+      <h2>
+        {country.name.common} {country.flag}
+      </h2>
+      <p>Oficial name: {country.name.official}</p>
+      <p>Capital: {country.capital}</p>
+      <p>Population: {country.population}</p>
+      <ul>
+        Language(s):{" "}
+        {languages.map((language) => (
+          <li key={language}>{language}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
 function HelperMessage() {
   return <p>Too many results. Enter more characters.</p>;
 }
 
 function Country({ country }) {
-  return <li>{country.name.official}</li>;
+  return <li>{country.name.common}</li>;
 }
 
 function Countries({ countries, toSearch }) {
-  const limit = 10
+  const limit = 10;
   const findCountry = (country) => {
     if (country.name.official.toLowerCase().includes(toSearch.toLowerCase())) {
       return country;
@@ -22,7 +46,14 @@ function Countries({ countries, toSearch }) {
   return (
     <ul>
       {toSearch.length > 0 && filteredList.length > limit && <HelperMessage />}
-      {filteredList.length <= limit &&
+      {filteredList.length === 1 &&
+        filteredList.map((country) => {
+          return (
+            <CountryDetails key={country.name.official} country={country} />
+          );
+        })}
+      {filteredList.length > 1 &&
+        filteredList.length <= limit &&
         filteredList.map((country) => {
           return <Country key={country.name.official} country={country} />;
         })}
