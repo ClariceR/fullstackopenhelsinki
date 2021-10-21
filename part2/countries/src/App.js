@@ -8,6 +8,9 @@ function CountryDetails({ country }) {
   for (const key in languagesObj) {
     languages.push(languagesObj[key]);
   }
+
+  const flagsObj = { ...country.flags };
+
   return (
     <>
       <h2>
@@ -22,6 +25,8 @@ function CountryDetails({ country }) {
           <li key={language}>{language}</li>
         ))}
       </ul>
+      <br />
+      <img src={flagsObj.png} alt="" />
     </>
   );
 }
