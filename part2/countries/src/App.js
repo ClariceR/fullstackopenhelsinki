@@ -2,38 +2,29 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function IntroMessage () {
-  return <p>Search for Countries</p>
+function HelperMessage() {
+  return <p>Too many results. Enter more characters.</p>;
 }
 
-function HelperMessage () {
-  return <p>Too many results. Enter more characters.</p>
-}
-
-function Country ({country}) {
+function Country({ country }) {
   return <li>{country.name.official}</li>;
 }
 
-function Countries({
-  countries,
-  toSearch,
-  limit,
-  setLimit,
-}) {
+function Countries({ countries, toSearch }) {
+  const limit = 10
   const findCountry = (country) => {
     if (country.name.official.toLowerCase().includes(toSearch.toLowerCase())) {
       return country;
     }
   };
   const filteredList = countries.filter(findCountry);
-  
-  
+
   return (
     <ul>
-      {toSearch.length > 0 && filteredList.length > 10 && <HelperMessage />}
-      {filteredList.length <= 10 &&
+      {toSearch.length > 0 && filteredList.length > limit && <HelperMessage />}
+      {filteredList.length <= limit &&
         filteredList.map((country) => {
-          return <Country key={Math.random().toString(16)} country={country} />;
+          return <Country key={country.name.official} country={country} />;
         })}
     </ul>
   );
