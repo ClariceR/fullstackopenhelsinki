@@ -12,7 +12,7 @@ function CountryDetails({ country }) {
   const flagsObj = { ...country.flags };
 
   return (
-    <>
+    <div>
       <h2>
         {country.name.common} {country.flag}
       </h2>
@@ -27,7 +27,7 @@ function CountryDetails({ country }) {
       </ul>
       <br />
       <img src={flagsObj.png} alt="Country's official flag" />
-    </>
+    </div>
   );
 }
 
@@ -35,11 +35,29 @@ function HelperMessage() {
   return <p>Too many results. Enter more characters.</p>;
 }
 
-function Country({ country }) {
-  return <li>{country.name.common}</li>;
+function ShowDetailsButton({ setShow }) {
+  return (
+    <button
+      onClick={() => {
+        setShow(true);
+      }}
+    >
+      Show
+    </button>
+  );
 }
 
-function Countries({ countries, toSearch }) {
+function Country({ country, show, setShow }) {
+  return (
+    <>
+      <li>{country.name.common}</li>
+      <ShowDetailsButton setShow={setShow} />
+      {show && <CountryDetails key={country.name.official} country={country} />}
+    </>
+  );
+}
+
+function Countries({ countries, toSearch, show, setShow }) {
   const limit = 10;
   const findCountry = (country) => {
     if (country.name.official.toLowerCase().includes(toSearch.toLowerCase())) {
@@ -60,8 +78,21 @@ function Countries({ countries, toSearch }) {
       {filteredList.length > 1 &&
         filteredList.length <= limit &&
         filteredList.map((country) => {
-          return <Country key={country.name.official} country={country} />;
+          return (
+            <Country
+              key={country.name.official}
+              country={country}
+              show={show}
+              setShow={setShow}
+            />
+          );
         })}
+      {/* {show &&
+        filteredList.map((country) => {
+          return (
+            <CountryDetails key={country.name.official} country={country} />
+          );
+        })} */}
     </ul>
   );
 }
@@ -69,7 +100,7 @@ function Countries({ countries, toSearch }) {
 function App() {
   const [countries, setCountries] = useState([]);
   const [toSearch, setToSearch] = useState("");
-  const [limit, setLimit] = useState(10);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     axios
@@ -88,8 +119,8 @@ function App() {
       <Countries
         countries={countries}
         toSearch={toSearch}
-        limit={limit}
-        setLimit={setLimit}
+        show={show}
+        setShow={setShow}
       />
     </div>
   );
