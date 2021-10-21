@@ -26,7 +26,7 @@ function CountryDetails({ country }) {
         ))}
       </ul>
       <br />
-      <img src={flagsObj.png} alt="" />
+      <img src={flagsObj.png} alt="Country's official flag" />
     </>
   );
 }
