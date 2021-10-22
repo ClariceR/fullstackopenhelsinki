@@ -51,8 +51,7 @@ function Country({ country, show, setShow }) {
   return (
     <>
       <li>{country.name.common}</li>
-      <ShowDetailsButton setShow={setShow} />
-      {show && <CountryDetails key={country.name.official} country={country} />}
+      <ShowDetailsButton setShow={setShow} country={country}/>
     </>
   );
 }
@@ -87,12 +86,12 @@ function Countries({ countries, toSearch, show, setShow }) {
             />
           );
         })}
-      {/* {show &&
+      {show &&
         filteredList.map((country) => {
           return (
             <CountryDetails key={country.name.official} country={country} />
           );
-        })} */}
+        })}
     </ul>
   );
 }
