@@ -18,7 +18,6 @@ function DisplayResults({ filteredData, setSearchTerm }) {
         <p>Oficial name: {filteredData[0].name.official}</p>
         <p>Capital: {filteredData[0].capital}</p>
         <p>Population: {filteredData[0].population}</p>
-        {console.log(filteredData[0])}
         <ul>
           Language(s):{" "}
           {languages.map((language) => (
