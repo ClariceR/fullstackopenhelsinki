@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function DisplayResults({ filteredData }) {
+function DisplayResults({ filteredData, setSearchTerm }) {
   if (filteredData.length === 1) {
     const languagesObj = { ...filteredData[0].languages };
     const languages = [];
@@ -33,10 +33,19 @@ function DisplayResults({ filteredData }) {
 
   if (filteredData.length > 10)
     return <p>Too many results. Enter more characters.</p>;
+
   return (
     <ul>
       {filteredData.map((country) => (
-        <li key={country.name.official}>{country.name.common}</li>
+        <li key={country.name.official}>
+          {country.name.common}{" "}
+          <button
+            value={country.name.common}
+            onClick={(e) => setSearchTerm(e.target.value)}
+          >
+            show
+          </button>
+        </li>
       ))}
     </ul>
   );
@@ -60,7 +69,10 @@ function App() {
     <div className="App">
       <h3>Search for Countries</h3>
       <input value={searchTerm} onChange={handleSearch} />
-      <DisplayResults filteredData={filteredData} />
+      <DisplayResults
+        filteredData={filteredData}
+        setSearchTerm={setSearchTerm}
+      />
     </div>
   );
 }
